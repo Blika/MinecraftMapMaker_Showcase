@@ -1,0 +1,9 @@
+{
+    "draw_outlines": true,
+    "draw_shadows": true,
+    "light_offset": [-320, 360, -258],
+    "light_radius": 2,
+    "light_direction": 0,
+    "darken": 0.1,
+    "shading": 0.2
+}
