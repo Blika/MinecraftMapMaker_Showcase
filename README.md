@@ -1,5 +1,5 @@
 # MinecraftMapMaker_Showcase
-A showcase of minecraft map image generator that renders a map image based on the data given.
+A showcase of Minecraft map image generator that renders a map image based on the data given.
 
 # What does it do?
 
