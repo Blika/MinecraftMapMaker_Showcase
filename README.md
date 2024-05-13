@@ -19,7 +19,7 @@ There are multiple settings (located in input/settings.json):
 ![](https://github.com/Blika/MinecraftMapMaker_Showcase/assets/61899272/1cdb5f9e-44c0-4a0d-a54a-75be3c1260e5)
 
 * Shading coeffiecent that further darkens pixels when shadows or outlines are processed.
-* Light direction which decides from there the light is processed. (Essential for outlines and shadows to work)
+* Light direction which decides from where the light is processed. (Essential for outlines and shadows to work)
 * Light radius. You can think that "light" in this project is a sun, and this settings desides how big this sun is. Without it the shadows would be somewhat unnatural (very long and tall). (Essential for shadows to work)
 * Light offset that decides where the light is actually located. If we only provide a light direction the program won't know exactly how to render light so we would have to assume it (meaning it would be hardcoded). (Essential for shadows to work)
 * Drawing outlines. It renders outlines based on light direction. As a result, it adds volume to the output map.
