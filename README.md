@@ -30,7 +30,7 @@ There are multiple settings (located in input/settings.json):
 
 * Drawing shadows decides if shadows are rendered. It heavily depends on light settings for obvious reasons and by tweaking this you're going to get different outputs. Sadly, as we only provide a height map, so we assume that there isn't any empty space under blocks. Therefore, some shadows may look strange but still quite good if your light settings are okay.
 
-> Darkening 0.1, outlines enabled, shadows enabled. Based on shadows you can guess each object actual height. Trees are quite tall so from here their shadows may not look good but buildings' shadows are okay.
+> Darkening 0.1, outlines enabled, shadows enabled. Based on shadows you can guess each object's actual height. Trees are quite tall so from here their shadows may not look good but buildings' shadows are okay.
 
 ![](https://github.com/Blika/MinecraftMapMaker_Showcase/assets/61899272/ae50f1c8-356c-4765-8e6c-0a8529a70c91)
 
