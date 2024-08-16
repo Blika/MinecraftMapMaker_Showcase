@@ -36,4 +36,4 @@ There are multiple settings (located in input/settings.json):
 
 # Usage
 
-To use this tool you can either download it from releases or build it yourself using `CMake`.
+To use this tool you can either download it from releases or build it yourself using `CMake` (there are build scritps available).
