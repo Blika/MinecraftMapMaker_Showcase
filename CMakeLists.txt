@@ -20,7 +20,6 @@ set(STB_PATH "${PROJECT_SOURCE_DIR}/stb")
 set(JSON_PATH "${PROJECT_SOURCE_DIR}/json")
 
 include_directories(${STB_PATH} ${JSON_PATH} ${PROJECT_SOURCE_DIR}/src)
-link_directories(${STB_PATH} ${JSON_PATH} ${PROJECT_SOURCE_DIR}/src)
 
 file(GLOB_RECURSE SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 add_executable(${PROJECT_NAME} ${SOURCES})
