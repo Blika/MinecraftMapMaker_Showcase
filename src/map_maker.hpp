@@ -38,8 +38,8 @@ namespace mapmaker{
             std::unordered_map<int, std::unordered_map<int, int>> height_map{};
 			std::default_random_engine rnd_eng{std::random_device{}()};
 
-			float rnd(float min, float max);
-			void async_draw(int start, int end);
+			float rnd(const float& min, const float& max);
+			void async_draw(const int& start, const int& end);
 			void check_async_pool();
 			void draw();
     };

@@ -71,12 +71,12 @@ namespace mapmaker{
     MapMaker::~MapMaker(){
     }
 
-	float MapMaker::rnd(float min, float max){
+	float MapMaker::rnd(const float& min, const float& max){
 		std::uniform_real_distribution<float> rnd_dist(min,max);
 		return rnd_dist(rnd_eng);
 	}
 
-    void MapMaker::async_draw(int start, int end){
+    void MapMaker::async_draw(const int& start, const int& end){
         for(int z = start; z < end; z++){
             for(auto& [x,block]: block_map[z]){
                 std::vector<int> rgb{0,0,0,255};

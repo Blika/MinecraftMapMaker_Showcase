@@ -6,7 +6,7 @@
 namespace mapmaker{
     class Image{
 		public:
-			Image(int width, int height);
+			Image(const int& width, const int& height);
 			~Image();
 
             Image(const Image&) = delete;
@@ -27,8 +27,8 @@ namespace mapmaker{
                 return data;
             }
             std::string get_png_data();
-            void get_pixel(size_t x, size_t y, stbi_uc* r, stbi_uc* g, stbi_uc* b, stbi_uc* a);
-            void write_pixel(size_t x, size_t y, stbi_uc r, stbi_uc g, stbi_uc b, stbi_uc a);
+            void get_pixel(const size_t& x, const size_t& y, stbi_uc* r, stbi_uc* g, stbi_uc* b, stbi_uc* a);
+            void write_pixel(const size_t& x, const size_t& y, stbi_uc r, stbi_uc g, stbi_uc b, stbi_uc a);
             void save_image(const char* output);
 
         private:

@@ -7,7 +7,7 @@
 
 namespace mapmaker{
 
-	Image::Image(int iw, int ih): width{iw}, height{ih}{
+	Image::Image(const int& iw, const int& ih): width{iw}, height{ih}{
         channels = 4; 
         data = (stbi_uc*)malloc(static_cast<size_t>(width) * static_cast<size_t>(height) * channels);
     }
@@ -24,14 +24,14 @@ namespace mapmaker{
         return str_data;
     }
 
-    void Image::get_pixel(size_t x, size_t y, stbi_uc* r, stbi_uc* g, stbi_uc* b, stbi_uc* a){
+    void Image::get_pixel(const size_t& x, const size_t& y, stbi_uc* r, stbi_uc* g, stbi_uc* b, stbi_uc* a){
         *r = data[4 * (y * width + x) + 0];
         *g = data[4 * (y * width + x) + 1];
         *b = data[4 * (y * width + x) + 2];
         *a = data[4 * (y * width + x) + 3];
     }
 
-    void Image::write_pixel(size_t x, size_t y, stbi_uc r, stbi_uc g, stbi_uc b, stbi_uc a){
+    void Image::write_pixel(const size_t& x, const size_t& y, stbi_uc r, stbi_uc g, stbi_uc b, stbi_uc a){
         data[4 * (y * width + x) + 0] = r;
         data[4 * (y * width + x) + 1] = g;
         data[4 * (y * width + x) + 2] = b;
