@@ -28,7 +28,7 @@ There are multiple settings (located in input/settings.json):
 
 ![](https://github.com/Blika/MinecraftMapMaker_Showcase/assets/61899272/6228078e-ef1a-401a-9a35-b8652e83a18b)
 
-* Drawing shadows decides if shadows are rendered. It heavily depends on light settings for obvious reasons and by tweaking this you're going to get different outputs. Sadly, as we only provide a height map, so we assume that there isn't any empty space under blocks. Therefore, some shadows may look strange but still quite good if your light settings are okay.
+* Drawing shadows. It heavily depends on light settings for obvious reasons and by tweaking this you're going to get different outputs. Sadly, as we only provide a height map, so we assume that there isn't any empty space under blocks. Therefore, some shadows may look strange.
 
 > Darkening 0.1, outlines enabled, shadows enabled. Based on shadows you can guess each object's actual height. Trees are quite tall so from here their shadows may not look good but buildings' shadows are okay.
 
@@ -36,4 +36,4 @@ There are multiple settings (located in input/settings.json):
 
 # Usage
 
-To use this tool you can either download it from releases or build it yourself using `CMake`.
+To use this tool you can either download it from releases or build it yourself using `CMake` (there are build scritps available).
