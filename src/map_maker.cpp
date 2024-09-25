@@ -1,4 +1,6 @@
 #include "map_maker.hpp"
+#include "image.hpp"
+#include "threadpool/threadpool.hpp"
 
 #include <chrono>
 #include <cmath>
@@ -8,6 +10,7 @@
 #include <random>
 #include <unordered_map>
 #include <vector>
+#include <thread>
 #include <single_include/nlohmann/json.hpp>
 #include <stb_image.h>
 namespace mapmaker{
@@ -27,6 +30,7 @@ namespace mapmaker{
             throw std::runtime_error("failed to initialize data");
 	    }
 
+        threadPool = new ThreadPool();
         threads = static_cast<int>(std::thread::hardware_concurrency());
         prefs.draw_outlines = settings["draw_outlines"].get<bool>();
         prefs.draw_shadows = settings["draw_shadows"].get<bool>();
@@ -36,7 +40,7 @@ namespace mapmaker{
         prefs.shading_value = settings["shading"].get<float>();
         prefs.light_offset = settings["light_offset"].get<std::vector<int>>();
 
-        img = std::make_unique<Image>(map["x"].get<int>(),map["z"].get<int>());
+        img = new Image(map["x"].get<int>(),map["z"].get<int>());
 
         for(auto& [k,v]: blocks_src.items()){
             int r,g,b;
@@ -69,6 +73,8 @@ namespace mapmaker{
     }
 
     MapMaker::~MapMaker(){
+        delete threadPool;
+        delete img;
     }
 
 	float MapMaker::rnd(const float& min, const float& max){
@@ -272,21 +278,6 @@ namespace mapmaker{
         }
     }
 
-    void MapMaker::check_async_pool(){
-        while(!async_pool.empty()){
-            int size = async_pool.size();
-            std::vector<int> finished{};
-            for(int i = 0; i < size; i++){
-                if(async_pool[i].wait_for(std::chrono::seconds(0)) == std::future_status::ready){
-                    finished.push_back(i);
-                }
-            }
-            for(auto& i: finished){
-                async_pool.erase(async_pool.begin() + i);
-            }
-        }
-    }
-
     void MapMaker::run(){
         draw();
         img->save_image("output/map.png");
@@ -312,9 +303,8 @@ namespace mapmaker{
                 left -= currentBatch;
             }
             end = start + currentBatch;
-            std::future<void> futa = std::async(std::launch::async, std::bind(&MapMaker::async_draw, this, start, end));
-            async_pool.push_back(std::move(futa));
+            threadPool->assignNewTask(std::bind(&MapMaker::async_draw, this, start, end), 1);
         }
-        check_async_pool();
+        threadPool->wait();
     }
 }

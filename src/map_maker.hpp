@@ -1,16 +1,16 @@
 #pragma once
 
-#include "image.hpp"
 #include <string>
 #include <unordered_map>
 #include <vector>
 #include <single_include/nlohmann/json.hpp>
-#include <future>
 #include <random>
 
 #include <stb_image.h>
 
 namespace mapmaker{
+    class ThreadPool;
+    class Image;
     class MapMaker{
 		public:
 			MapMaker();
@@ -21,7 +21,7 @@ namespace mapmaker{
 			void run();
 
         private:
-			std::vector<std::future<void>> async_pool{};
+			ThreadPool* threadPool{};
 			struct{
 				bool draw_outlines;
 				bool draw_shadows;
@@ -32,7 +32,7 @@ namespace mapmaker{
 				std::vector<int> light_offset;
 			} prefs;
 			int threads;
-			std::unique_ptr<Image> img;
+			Image* img;
             std::unordered_map<std::string, std::vector<int>> color_map{};
             std::unordered_map<int, std::unordered_map<int, std::string>> block_map{};
             std::unordered_map<int, std::unordered_map<int, int>> height_map{};
@@ -40,7 +40,6 @@ namespace mapmaker{
 
 			float rnd(const float& min, const float& max);
 			void async_draw(const int& start, const int& end);
-			void check_async_pool();
 			void draw();
     };
 }
