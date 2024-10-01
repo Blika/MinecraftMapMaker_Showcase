@@ -25,9 +25,11 @@ namespace mapmaker{
     }
 
     void Thread::addToQueue(const std::function<void()>& func, const int32_t& w){
-        std::lock_guard<std::mutex> lock(tasksMutex);
-        tasks.push(std::make_pair(std::move(func), w));
-        condition.notify_one();
+        {
+            std::lock_guard<std::mutex> lock(tasksMutex);
+            tasks.push(std::make_pair(std::move(func), w));
+            condition.notify_one();
+        }
         std::lock_guard<std::mutex> lock1(weightMutex);
         weight += w;
     }
